@@ -5,13 +5,15 @@ public class User {
 	private String nomUser;
 	private String correo;
 	private String password;
+	private boolean isAdmin;
 	
-	public User(int idUser, String nomUser, String correo, String password) {
+	public User(int idUser, String nomUser, String correo, String password, boolean isAdmin) {
 		super();
 		this.idUser = idUser;
 		this.nomUser = nomUser;
 		this.correo = correo;
 		this.password = password;
+		this.isAdmin = isAdmin;
 	}
 	
 	/**
@@ -93,6 +95,26 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	/**
+	 * Sets if the user is an Administrator
+	 * @param password A string containing the users pasword
+	 */
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	
+	/**
+	 * Gets if the user is an Administrator
+	 * @param password A string containing the users pasword
+	 */
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
+	
 	
 	
 
