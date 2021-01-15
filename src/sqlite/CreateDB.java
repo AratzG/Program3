@@ -13,7 +13,7 @@ public class CreateDB
 {
 
     /**
-     * Connect to a sample database
+     * Clase que crea y establece la conexion con la base de datos
      *
      * @param fileName the database file name
      */

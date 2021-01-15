@@ -6,7 +6,7 @@ package excepciones;
 	 *
 	 */
 
-public class DniRepetido extends Exception {
+public class PasswordDistintas extends Exception {
 		
 		/**
 		 * El método extiende de la clase Exception para mostrar el mensaje de de error
@@ -14,7 +14,7 @@ public class DniRepetido extends Exception {
 		 */
 		
 		
-		public DniRepetido(String mensaje) {
+		public PasswordDistintas(String mensaje) {
 			super(mensaje);
 		}
 

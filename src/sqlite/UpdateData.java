@@ -1,24 +1,26 @@
-/*package sqlite;
-
-import users.User;
+package sqlite;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-*//**
+import cards.BankCard;
+import cards.BusCard;
+
+/**
+ * Clase que permite actualizar usuarios
+ * @author Alumno
  *
- * @author Aratz y Anton
- *//*
+ */
 public class UpdateData
 {
 
-    *//**
+    /**
      * Connect to the test.db database
      *
      * @return the Connection object
-     *//*
+     */
     private Connection connect()
     {
         // SQLite connection string
@@ -34,16 +36,16 @@ public class UpdateData
         }
         return conn;
     }
-
-    *//**
-     * Update data of a equipo specified by the name
-     *
-     * @param equipo
-     *//*
-    public void update(User usuario, String nuevo)
+    /**
+     * Metodo para actualizar los datos de una tarjeta de Banco dado un numero de tarjeta
+     * @param b tarjeta de banco que queremos actualizar
+     * @param numeroTarjeta de la atrjeta que queremos cambiar
+     */
+    
+    public void updateBanca (BankCard b, int numeroTarjeta)
     {
-        String sql = "UPDATE USUARIO SET idUser = ?, nombre = ? , password = ?, correo = ?, " +
-                "isAdmin = ? WHERE nombre = ?";
+        String sql = "UPDATE BANCA SET banco = ? , credito = ?, numSeguridad = ?, " +
+                "dinero = ?, nombreTarjeta = ? , propietario = ? WHERE numTarjeta = ?";
 
         try
                 (
@@ -51,13 +53,16 @@ public class UpdateData
                         PreparedStatement pstmt = conn.prepareStatement(sql)
                 )
         {
+        	
             // set the corresponding param
-            pstmt.setInt(1, User.getIdUser());
-            pstmt.setString(2, User.getNombre());
-            pstmt.setShort(3, User.getPassword());
-            pstmt.setShort(4, User.getCorreo());
-            pstmt.setShort(5, User.getGolesEncajados());
-            pstmt.setString(7, nuevo);
+    		pstmt.setString(1, b.getBanco());
+			pstmt.setBoolean(2, b.getCredito());
+			pstmt.setInt(3, numeroTarjeta);
+			pstmt.setInt(4, b.getNumSeguridad());
+			pstmt.setInt(5, b.getDinero());
+			pstmt.setString(6, b.getNombreTarjeta());
+			pstmt.setInt(7, b.getPropietario());
+			pstmt.executeUpdate();
 
             // update
             pstmt.executeUpdate();
@@ -67,17 +72,17 @@ public class UpdateData
             System.out.println(e.getMessage());
         }
     }
-
-    *//**
-     * Actualiza un jugador según su código.
-     * @param jugador
-     * @param real
-     *//*
-    public void updateJugador(Jugador jugador, String real)
+   
+    /**
+     * Metodo para actualizar los datos de una tarjeta de bus dado un numero de tarjeta
+     * @param b tarjeta de banco que queremos actualizar
+     * @param numeroTarjeta de la atrjeta que queremos cambiar
+     */
+   
+    public void updateBus(BusCard b, String numeroTarjeta)
     {
-        String sql = "UPDATE JUGADOR SET nombre = ? , equipo = ?, apellido = ?, goles = ?, " +
-                "asistencias = ?, dorsal = ?, nombreCamiseta = ?, piernaBuena = ?, edad = ?, " +
-                " nacionalidad = ? WHERE codJug = ?";
+        String sql = "UPDATE BUS SET localidad = ? , trayectos = ?, saldo = ?, nombreTarjeta = ?, " +
+                "propietario = ? WHERE numTarjeta = ?";
 
         try
                 (
@@ -86,17 +91,12 @@ public class UpdateData
                 )
         {
             // set the corresponding param
-            pstmt.setString(1, jugador.getNombre());
-            pstmt.setString(2, jugador.getNomEquipo());
-            pstmt.setString(3, jugador.getApellido());
-            pstmt.setInt(4, jugador.getGoles());
-            pstmt.setInt(5, jugador.getAsistencias());
-            pstmt.setShort(6,jugador.getDorsal());
-            pstmt.setString(7,jugador.getNombreCamiseta());
-            pstmt.setString(8, jugador.getPiernaBuena());
-            pstmt.setInt(9, jugador.getEdad());
-            pstmt.setString(10, jugador.getNacionalidad());
-            pstmt.setString(11, real);
+			pstmt.setString(1, numeroTarjeta);
+			pstmt.setString(2, b.getLocalidad());
+			pstmt.setInt(3, b.getTrayectos());
+			pstmt.setInt(4, b.getSaldo());
+			pstmt.setString(5, b.getNombreTarjeta());
+			pstmt.setInt(6, b.getPropietario());
 
             // update
             pstmt.executeUpdate();
@@ -107,15 +107,13 @@ public class UpdateData
         }
     }
 
-    *//**
+    /**
      * @param args the command line arguments
-     *//*
+     */
     public static void main(String[] args)
     {
-            UpdateData app = new UpdateData();
+            UpdateData uD = new UpdateData();
 
-            // update the warehouse with id 3
-
+            
     }
 }
-*/

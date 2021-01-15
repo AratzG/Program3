@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class DeleteData
 {
     /**
-     * Connect to the test.db database
+     * 
      *
      * @return the Connection object
      */
@@ -40,7 +40,7 @@ public class DeleteData
      */
     public void deleteUsuario(String nombre)
     {
-        String sql = "DELETE FROM USUARIOS WHERE nombre = ?";
+        String sql = "DELETE FROM USUARIO WHERE nombre = ?";
 
         try
                 (
@@ -66,7 +66,7 @@ public class DeleteData
      * Elimina un dni mediante la especificación del numero de dni
      * @param numDni
      */
-    public void deletePartido(String codPar)
+    public void deleteDni(String codPar)
     {
         String sql = "DELETE FROM DNI WHERE numDni = ?";
 
@@ -94,7 +94,7 @@ public class DeleteData
      * Elimina una tarjeta del banco especificando el numero de la tarjeta
      * @param numeroTarjeta
      */
-    public void deleteMiembro(String nombre)
+    public void deleteBanca(String nombre)
     {
         String sql = "DELETE FROM BANCA WHERE numeroTarjeta = ?";
 
@@ -117,6 +117,35 @@ public class DeleteData
             System.out.println(e.getMessage());
         }
     }
+    /**
+     * Elimina una tarjeta del bus especificando el numero de la tarjeta
+     * @param numeroTarjeta
+     */
+    
+    public void deleteBus(String numeroTarjeta)
+    {
+        String sql = "DELETE FROM BUS WHERE numeroTarjeta = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+
+            // set the corresponding param
+            pstmt.setString(1, numeroTarjeta);
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     /**
      * @param args the command line arguments

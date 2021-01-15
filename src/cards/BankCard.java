@@ -23,8 +23,8 @@ public class BankCard extends Card{
      */
 
 	
-	public BankCard(String banco, Boolean credito, int numTarjeta, int numSeguridad, int dinero) {
-		super();
+	public BankCard(String banco, Boolean credito, int numTarjeta, int numSeguridad, int dinero, String nombreTarjeta, int propietario) {
+		super(nombreTarjeta, propietario);
 		this.banco = banco;
 		this.credito = credito;
 		this.numTarjeta = numTarjeta;
@@ -121,6 +121,18 @@ public class BankCard extends Card{
 	public void setDinero(int dinero) {
 		this.dinero = dinero;
 	}
+
+
+	/* Metodo toString permite mostrar los atributos banco numtarjeta y dinero empleado en los lists
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return "BankCard [banco=" + banco + ", numTarjeta=" + numTarjeta + ", dinero=" + dinero + "]";
+	}
+
+
+
 	
 	
 

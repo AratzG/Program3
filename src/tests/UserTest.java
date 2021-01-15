@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import users.User;
+
 //import users.User;
 
 
@@ -28,13 +30,13 @@ public class UserTest {
 	@Test
 	public void testConstructor() 
 	{
-//		User u1 = new User();
-//		
-//		User u2 = new User();
-//		
-//		u2.setNomUser("String nombre");
-//		
-//		assertEquals(u1.getNomUser(), "String nombre");
+		User u1 = new User();
+		
+		User u2 = new User();
+		
+		u2.setNomUser("String nombre");
+		
+		assertEquals(u1.getNomUser(), "String nombre");
 		
 		
 	}

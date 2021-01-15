@@ -13,32 +13,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Menu extends JFrame {
+public class VentanaMenu extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Esta es la ventana principal para entrar a nuestro gestor de tarjetas
-	 * @author Aratz y Antón
-	 *
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Menu() {
+	public VentanaMenu(User usuario, Login login) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -54,17 +37,26 @@ public class Menu extends JFrame {
 		JButton btnTarjetas = new JButton("Mis Tarjetas");
 		btnTarjetas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+                VentanaMenu.this.setVisible(false);
+                MenuMisTarjetas ventanaMisTarjetas =new MenuMisTarjetas(usuario);
+                ventanaMisTarjetas.setVisible(true);
+                VentanaMenu.this.dispose();
 			}
 		});
-		btnTarjetas.setBounds(43, 43, 167, 29);
+		btnTarjetas.setBounds(235, 94, 167, 29);
 		panel.add(btnTarjetas);
 		
-		JButton btnOtros = new JButton("Otros");
-		btnOtros.setBounds(43, 128, 115, 29);
+		JButton btnOtros = new JButton("Mis Datos");
+		btnOtros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                //VentanaMenu.this.setVisible(false);
+                MostrarUsuario mostrarUsuario = new MostrarUsuario(usuario);
+                mostrarUsuario.setVisible(true);
+               // VentanaMenu.this.dispose();
+				
+			}
+		});
+		btnOtros.setBounds(44, 94, 131, 29);
 		panel.add(btnOtros);
-	}
-
-	public Menu(User usuario, Login login) {
-		// TODO Auto-generated constructor stub
 	}
 }

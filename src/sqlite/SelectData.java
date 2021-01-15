@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import cards.BankCard;
+import cards.BusCard;
 import cards.DNI;
 import users.User;
 
@@ -16,7 +17,8 @@ public class SelectData {
 	private ArrayList<User> listaUsuarios = new ArrayList<>();
     private ArrayList<DNI> listaDnis = new ArrayList<>();
     private ArrayList<BankCard> listaBanca = new ArrayList<>();
-
+    private ArrayList<BusCard> listaBus = new ArrayList<>();
+    
     /**
      * Connect to the test.db database
      *
@@ -104,10 +106,12 @@ public class SelectData {
 				String surname2 = rs.getString("apellido2");
 				int dateDob = rs.getInt("fecNacimiento");
 				int dateExp = rs.getInt("fecCaducidad");
+				String cardName = rs.getString("nombreTarjeta");
+				int owner = rs.getInt("propietario");
 				
 				
-				DNI dni = new DNI(numeroIdentidad, name, surname1, surname2, dateDob, dateExp);
-				listaDnis.add(dni);
+				DNI dni = new DNI(numeroIdentidad, name, surname1, surname2, dateDob, dateExp, cardName, owner);
+				
 				
 
 				listaDnis.add(dni);
@@ -138,20 +142,27 @@ public class SelectData {
 				int cardNum;
 				int secNum;
 				int money;
+				String cardName;
+				int owner;
 				
 				BankCard bankCard = new BankCard();				
 				
 				entidad = rs.getString("banco");
 				credit = rs.getBoolean("credito");
-				cardNum = rs.getInt("numeroTarjeta");
-				secNum = rs.getInt("numeroSecreto");
+				cardNum = rs.getInt("numTarjeta");
+				secNum = rs.getInt("numSeguridad");
 				money = rs.getInt("dinero");
+				cardName = rs.getString("nombreTarjeta");
+				owner = rs.getInt("propietario");
+				
 				
 				bankCard.setBanco(entidad);
 				bankCard.setCredito(credit);
 				bankCard.setNumTarjeta(cardNum);
 				bankCard.setNumSeguridad(secNum);
 				bankCard.setDinero(money);
+				bankCard.setNombreTarjeta(cardName);
+				bankCard.setPropietario(owner);
 
 				
 
@@ -164,12 +175,59 @@ public class SelectData {
 
 	}
 	
+	public ArrayList selectTarjetaBus() {
+
+		String sql = "SELECT * FROM BUS";
+		try
+        (
+                Connection conn = this.connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+
+        )
+		{
+			while (rs.next()) {
+				String numeroTarjeta = rs.getString("numTarjeta");
+				String place = rs.getString("localidad");
+				int viajes = rs.getInt("trayectos");
+				int balance = rs.getInt("saldo");
+				String cardName = rs.getString("nombreTarjeta");
+				int owner = rs.getInt("propietario");
+				
+				
+				BusCard busCard = new BusCard(numeroTarjeta, place, viajes, balance, cardName, owner);
+				listaBus.add(busCard);
+				
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return listaBus;
+
+	}
+	
+    
+	
     public static void main(String[] args)
     {
         SelectData sD = new SelectData();
         sD.selectUsuario();
         sD.selectTarjetaBanco();
         sD.selectDni();
+        
+        ArrayList<DNI> listaDnis = new ArrayList<DNI>();
+        listaDnis = sD.selectDni();
+
+        for(int i = 0; i<listaDnis.size(); i++){
+        	System.out.println("Nombre: "+listaDnis.get(i).getNombre());
+        	System.out.println("NumDNI: "+listaDnis.get(i).getNumDni());
+        	System.out.println("Ape1: "+listaDnis.get(i).getApellido1());
+        	System.out.println("Ape2: "+listaDnis.get(i).getApellido2());
+        	System.out.println("Propiet: "+listaDnis.get(i).getPropietario());
+        	
+        }
+        
+        
 
 
         

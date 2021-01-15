@@ -3,11 +3,11 @@ package users;
 public class User {
 	private int idUser;
 	private String nomUser;
-	private String correo;
 	private String password;
+	private String correo;
 	private boolean isAdmin;
 	
-	public User(int idUser, String nomUser, String correo, String password, boolean isAdmin) {
+	public User(int idUser, String nomUser, String password, String correo,boolean isAdmin) {
 		super();
 		this.idUser = idUser;
 		this.nomUser = nomUser;
@@ -113,6 +113,14 @@ public class User {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+
+	
+	@Override
+	public String toString() {
+		return nomUser;
+	}
+	
+	
 	
 	
 	

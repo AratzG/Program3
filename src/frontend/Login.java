@@ -1,7 +1,9 @@
 package frontend;
 
-
+import frontend.*;
 import java.awt.EventQueue;
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class Login extends JFrame {
 				try {
 					Login frame = new Login();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -100,18 +103,19 @@ public class Login extends JFrame {
                     boolean encontrado = comprobarUsuario(usuarioInput, passwordInput);
                     if(encontrado)
                     {
-                        if(usuario.isAdmin()==true)
+                        if(usuario.isAdmin() == true)
                         {
                             Login.this.setVisible(false);
-                            VentanaAdmin ventana=new VentanaAdmin(listaUsuarios, Login.this);
-                            ventana.setVisible(true);
+                            VentanaAdmin ventanaAdmin =new VentanaAdmin(/*usuario, Login.this*/);
+                            ventanaAdmin.setVisible(true);
                             Login.this.dispose();
                         }
                         else
                         {
                             Login.this.setVisible(false);
-                            Menu menu = new Menu(usuario, Login.this);
+                            VentanaMenu menu = new VentanaMenu(usuario, Login.this);
                             menu.setVisible(true);
+                            Login.this.dispose();
                         }
                     }
                 } catch (UsuarioNoExiste e1) {
@@ -123,9 +127,19 @@ public class Login extends JFrame {
 		btnLogin.setBounds(60, 143, 115, 29);
 		contentPane.add(btnLogin);
 		
-		JButton btnSignIn = new JButton("Sign In");
-		btnSignIn.setBounds(246, 143, 115, 29);
-		contentPane.add(btnSignIn);
+		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+               
+				Login.this.setVisible(false);
+                VentanaRegistro ventanaRegistro =new VentanaRegistro(listaUsuarios, Login.this);
+                ventanaRegistro.setVisible(true);
+                Login.this.dispose();
+				
+			}
+		});
+		btnRegistrarse.setBounds(246, 143, 115, 29);
+		contentPane.add(btnRegistrarse);
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {

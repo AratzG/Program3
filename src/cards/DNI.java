@@ -1,5 +1,6 @@
 package cards;
 
+import java.util.Date;
 
 /**
  * En esta clase se desarrollan los atributos del DNI
@@ -12,7 +13,7 @@ public class DNI extends Card{
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	private int fecNacimietno;
+	private int fecNacimiento;
 	private int fecCaducidad;
 	
 	 /**
@@ -26,13 +27,13 @@ public class DNI extends Card{
      */	
 	
 	
-	public DNI(String numDni, String nombre, String apellido1, String apellido2, int fecNacimietno, int fecCaducidad) {
-		super();
+	public DNI(String numDni, String nombre, String apellido1, String apellido2, int fecNacimiento, int fecCaducidad, String nombreTarjeta, int propietario) {
+		super(nombreTarjeta, propietario);
 		this.numDni = numDni;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		this.fecNacimietno = fecNacimietno;
+		this.fecNacimiento = fecNacimiento;
 		this.fecCaducidad = fecCaducidad;
 	}
 	 /**
@@ -103,15 +104,15 @@ public class DNI extends Card{
 	 * Este método devuelve el atributo fecNacimiento a otra clase
 	 * @return fecNacimietno
 	 */
-	public int getFecNacimietno() {
-		return fecNacimietno;
+	public int getFecNacimiento() {
+		return fecNacimiento;
 	}
 	/**
 	 * Este método da valor al atributo fecNaciemiento
 	 * @param fecNacimietno 
 	 */
-	public void setFecNacimietno(int fecNacimietno) {
-		this.fecNacimietno = fecNacimietno;
+	public void setFecNacimietno(int fecNacimiento) {
+		this.fecNacimiento = fecNacimiento;
 	}
 	/**
 	 * Este método devuelve el atributo fecCaducidad a otra clase
@@ -127,6 +128,9 @@ public class DNI extends Card{
 	public void setFecCaducidad(int fecCaducidad) {
 		this.fecCaducidad = fecCaducidad;
 	}
+	
+		
+	
 	
 	
 	
